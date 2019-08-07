@@ -26,7 +26,14 @@ def main():
         handle = handle.split(".com/")[1];
     if "@" in handle:
         handle = handle.replace("@", "");
-    GetURL2("https://birdsite.monster/" + handle);
+    code = 0;
+    while code < 1:
+        try:
+            GetURL2("https://birdsite.monster/" + handle);
+            code = 1;
+        except urllib2.HTTPError:
+            print "There was an error on Birdsite's servers; the website might be down.";
+            time.sleep(5);
     print "ActivityPub account: @" + handle + "@birdsite.monster";
     main();
 main();
