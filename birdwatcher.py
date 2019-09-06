@@ -47,7 +47,12 @@ def main():
             code = 1;
             print "Tiny Subversions account: @" + handle + "@bots.tinysubversions.com";
         except urllib2.HTTPError:
-            print "There was an error on Tiny Subversions' servers; the website might be down.";
+            try:
+                GetURL2("http://bots.tinysubversions.com/api/convert/?feed=https://twitrss.me/twitter_user_to_rss/?user=" + handle + "&username=" + handle);
+                code = 1;
+                print "Tiny Subversions account: @" + handle + "@bots.tinysubversions.com";
+            except urllib2.HTTPError:
+                print "There was an error on Tiny Subversions' servers; the website might be down.";
             count = count + 1;
         if count > 2:
             code = 1;
